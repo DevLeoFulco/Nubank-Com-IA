@@ -1,4 +1,4 @@
-# nubank_clone
+# nubank_com_IA
 
 A new Flutter project.
 
