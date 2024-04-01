@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
     final double heightMarginTop = MediaQuery.of(context).padding.top;
     final double height = MediaQuery.of(context).size.height - heightMarginTop;
     final double width = MediaQuery.of(context).size.width - heightMarginTop;
-    final String titular = 'Leandresson';
+    const String titular = 'Leandresson';
 
     Future setBarsColor(Color navigationBarColor, Color statusBarColor) async {
       await Future.delayed(const Duration(milliseconds: 1));
@@ -200,17 +200,96 @@ class HomeScreen extends StatelessWidget {
                                 color: Colors.white,
                                 size: 22,
                               ),
-                              SizedBox(
-                                width: 18,
-                              ),
                             ],
                           )
                         ],
                       ),
+                    ),
+                    Text(
+                      'Olá, $titular',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600),
                     )
                   ],
                 ),
-              )
+              ),
+              Container(
+                padding: const EdgeInsets.all(20),
+                height: 120,
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            'conta',
+                            style: textStyleTitles,
+                          ),
+                        ),
+                        Icon(Icons.keyboard_arrow_right_rounded)
+                      ],
+                    ),
+                    SizedBox(
+                      height: 13,
+                    ),
+                    Text(
+                      'R\$ 7.862,00',
+                      style:
+                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
+                    )
+                  ],
+                ),
+              ),
+              Container(
+                  height: 135,
+                  width: width,
+                  padding: const EdgeInsets.only(top: 1),
+                  child: SingleChildScrollView(
+                    physics: const BouncingScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    child: ListView.builder(
+                      shrinkWrap: true,
+                      scrollDirection: Axis.horizontal,
+                      itemCount: listActions.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          margin: EdgeInsets.only(
+                              left: index == 0 ? 20 : 5,
+                              right:
+                                  index == (listActions.length - 1) ? 20 : 5),
+                          width: 72,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 5),
+                                height: 72,
+                                width: 72,
+                                child: CircleAvatar(
+                                  backgroundColor: const Color(0xFFEBEBEB),
+                                  child: listActions[index]['icon'],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                listActions[index]['title'],
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                    fontWeight: FontWeight.w500, fontSize: 14),
+                              )
+                            ],
+                          ),
+                        );
+                      },
+                    ),
+                  ))
             ],
           ),
         )));
